@@ -148,7 +148,7 @@
           "name": "Zapatillas ASICS running",
           "price": "1500",
           "discount": "20",
-          "category": "in-sale",
+          "category": "visited",
           "description": "Zapatillas ideal para todos los días.",
           "image": "zapatillasAsics.jpg-1663715285432.jpg"
      }
