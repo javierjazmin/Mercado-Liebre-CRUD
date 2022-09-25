@@ -14,48 +14,84 @@
                         <h2 class="products-title">Formulario de Registro</h2>
                     </div>
                 </div>
-                <% if(locals.errors) { %>
-                    <% for(let oneError in errors) {%>
-                        <p>
-                            <%= errors[oneError].msg %>
-                        </p>
-                        <% } %>
-                            <% } %>
                                 <div class="col-12">
                                     <form action="/users/register" method="POST" enctype="multipart/form-data">
                                         <div class="row product-detail">
                                             <div class="col-12 col-md-6">
                                                 <label for="name" class="form-label">Nombre completo:</label>
-                                                <input type="text" id="name" name="name" placeholder="nombreCompleto"
-                                                    class="form-input">
+                                                <input type="text" 
+                                                        id="name" 
+                                                        name="name" 
+                                                        placeholder="nombreCompleto"
+                                                        class="form-input <%= locals.errors && errors.name? 'is-invalid': null %>"
+                                                        value="<%= locals.name? oldData.name: null %>">
+                                                    <% if(locals.errors && errors.name) { %>
+                                                        <p class="msg-error">
+                                                            <%= errors.name.msg %>
+                                                        </p>
+                                                        <% } %>
+                                                            
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <label for="price" class="form-label">Password:</label>
-                                                <input type="password" id="password" name="password"
-                                                    placeholder="password" class="form-input">
+                                                <input type="password" 
+                                                        id="password" 
+                                                        name="password"
+                                                        placeholder="password" 
+                                                        class="form-input <%= locals.errors && errors.password? 'is-invalid': null %>">
+                                                    <% if(locals.errors && errors.password) { %>
+                                                        <p class="msg-error">
+                                                            <%= errors.password.msg %>
+                                                        </p>
+                                                        <% } %>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <label for="discount" class="form-label">Email:</label>
-                                                <input type="email" id="email" name="email"
-                                                    placeholder="javier@tumail.com" class="form-input">
+                                                <input type="email" 
+                                                        id="email" 
+                                                        name="email"
+                                                        placeholder="javier@tumail.com" 
+                                                        class="form-input <%= locals.errors && errors.email? 'is-invalid': null %>"
+                                                        value="<%= locals.oldData? oldData.email: null %>">
+                                                    <% if(locals.errors && errors.email) { %>
+                                                        <p class="msg-error">
+                                                            <%= errors.email.msg %>
+                                                        </p>
+                                                        <% } %>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <label for="agregarImagen" class="form-label">Agregar Imagen:</label>
                                                 <input type="file" id="image" name="avatar" class="form-input">
+                                                <% if(locals.errors && errors.avatar) { %>
+                                                    <p class="msg-error">
+                                                        <%= errors.avatar.msg %>
+                                                    </p>
+                                                    <% } %>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <label for="category" class="form-label">País de Nacimiento:</label>
-                                                <select name="pais" id="pais" class="form-input">
+                                                <select name="pais" 
+                                                        id="pais" 
+                                                        class="form-input <%= locals.errors && errors.pais? 'is-invalid': null %>">
+                                                    <option 
+                                                        value="">Selecciona un pais</option>
                                                     <% let paises=[ 'Argentina' , 'Bolivia' , 'Brasil' , 'Chile'
                                                         , 'Colombia' , 'Paraguay' , 'Peru' , 'Uruguay' , 'Venenzuela' ]
                                                         %>
                                                         <% for (const unPais of paises) {%>
 
-                                                            <option value="<%= unPais %>">
-                                                                <%= unPais %>
+                                                            <option 
+                                                            value="<%= unPais %>">
+                                                                <%= locals.oldData && (unPais === oldData.pais)? 'selected' : null %>
+                                                                <%= unPais %> 
                                                             </option>
                                                             <% } %>
                                                 </select>
+                                                <% if(locals.errors && errors.pais) { %>
+                                                    <p class="msg-error">
+                                                        <%= errors.pais.msg %>
+                                                    </p>
+                                                    <% } %>
                                             </div>
                                             <div class="col-12">
                                                 <button type="submit" class="buy-now-button">Enviar</button>

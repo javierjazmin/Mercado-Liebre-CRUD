@@ -10,10 +10,27 @@ const usersController = require('../controllers/usersController');
 
 //***************Validations *********************/
 const validations = [
-    body('nombreCompleto').notEmpty().withMessage('tienes que poner tu nombre completo'),
-    body('email').notEmpty().withMessage('tienes que poner un email valido'),
+    body('name').notEmpty().withMessage('tienes que poner tu nombre completo'),
+    body('email').notEmpty().withMessage('tienes que poner un email valido').bail()
+    .isEmail().withMessage('escribir un formato de email valido'),
     body('password').notEmpty().withMessage('tienes que poner una contraseña'),
-    body('pais').notEmpty().withMessage('tienes que seleccionar un pais')
+    body('pais').notEmpty().withMessage('tienes que seleccionar un pais'),
+    body('avatar').custom((value, {req}) =>{
+      let file = req.file;
+      let acceptedExtensions = ['.jpg', '.png', '.gif'];
+
+      if(!file){
+        throw new Error ('tienes que subir una imagen');
+      }
+      else{
+        let fileExtension = path.extname(file.originalname);
+      if (!acceptedExtensions.includes(fileExtension)){
+        throw new Error (`Las extensiones permitidas son ${ acceptedExtensions.join(',') } `);
+      }
+    }
+      return true;
+
+    })
 ]
 //***************Multer *********************/
 

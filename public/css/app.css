@@ -403,6 +403,13 @@ hr {
 .form-input-file {
   border: none;
 }
+.is-invalid{
+  border: solid 2px red;
+}
+.msg-error{
+  font-size: 12px;
+  color: red;
+}
 
 textarea.form-input {
   min-height: 140px;
