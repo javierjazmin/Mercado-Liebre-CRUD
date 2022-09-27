@@ -6,5 +6,13 @@
           "password": "1234556",
           "pais": "Argentina",
           "avatar": "yaz-avatar.jpg-1664143434311.jpg"
+     },
+     {
+          "id": 2,
+          "name": "Federico Masera",
+          "email": "fede@gmail.com",
+          "password": "123456",
+          "pais": "Argentina",
+          "avatar": "zapatillasAsics.jpg-1664315465015.jpg"
      }
 ]
